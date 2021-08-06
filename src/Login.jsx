@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useContext,useEffect } from "react";
 import { Redirect } from "react-router-dom";
-import {auth,signInWithGoogle} from "./firebase";
-
+import {auth,signInWithGoogle,firestore} from "./firebase";
+import { userContext } from "./App"; 
 // If first of all login component is opened then login button appears because user is null initially
 //  then when the user logs in then through signInWithGoogle function i.e. provider function which help us to sign 
 // with google will be called we can login from any google account
@@ -16,20 +16,35 @@ import {auth,signInWithGoogle} from "./firebase";
 
 
 let Login = (props)=>{
+    let value = useContext(userContext);
+    console.log(value);
 useEffect(()=>{
 
-
-    auth.onAuthStateChanged((user)=>{
+// this works when login and logout is done
+    auth.onAuthStateChanged( async (user)=>{
         // if login-> user info
         // if logout user = null
 
         if(user){
-            let { displayName, email} =user;
+            let { displayName, email, uid} =user;
 // displayName = user.displayName
 // email = user.email
+// uid = user.uid
 // destructuring concept
-            console.log(user);
-            props.handleUser({ displayName, email});
+            // console.log(user);
+            let docRef = firestore.collection("users").doc(uid);
+            let document = await docRef.get();
+
+            if(!document.exists)
+            {
+                docRef.set({
+                    displayName,
+                    email,
+                    posts:[],
+                });
+            }
+
+            props.handleUser({ displayName, email, uid});
         }
         else{
             props.handleUser(user);
@@ -38,9 +53,12 @@ useEffect(()=>{
 },[]);
     return(
         <div>
-            {props.user?<Redirect to="/home"/> : ""}
+            {value?<Redirect to="/home"/> : ""}
 
-            <button onClick={signInWithGoogle} type="button" className="btn btn-primary m-4">Login with google</button>
+            <button onClick={signInWithGoogle}
+             type="button" 
+            className="btn btn-primary m-4">
+                Login with google</button>
         </div>
     )
 }
