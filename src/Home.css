@@ -7,6 +7,15 @@
     border-radius:50%;
     border: none;
 }
+.upload-btn{
+    position: fixed;
+    bottom: 5rem;
+    right: 2rem;
+    height: 2rem;
+    width:6rem;
+    /* border-radius:50%; */
+    border: none;
+}
 .posts-container{
     height: 100vh;
     width: 100vw;

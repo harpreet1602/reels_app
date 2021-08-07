@@ -1,8 +1,11 @@
+// for basic app of firebase
 import firebase from "firebase/app";
+// then according to requirement do import
 import "firebase/firestore";
 // step1
 import "firebase/auth";
 
+import "firebase/storage";
   // Your web app's Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyDJ4VRzDPHl18gUB0jKVdSMWC4M60QfQzk",
@@ -20,6 +23,11 @@ export const firestore = firebase.firestore();
 // step2
 // object inititalised of auth
 export const auth = firebase.auth();
+// object of storage has been created
+export const storage = firebase.storage();
+
+// storage ka object banana padega
+
 
 // step 3 => firebase console enable; google login in auth panel
 // by this provider we will be provided google services to login
