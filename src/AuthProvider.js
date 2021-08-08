@@ -19,7 +19,7 @@ useEffect(()=>{
             // if logout user = null
     
             if(user){
-                let { displayName, email, uid, photoURl} =user;
+                let { displayName, email, uid, photoURL} =user;
     // displayName = user.displayName
     // email = user.email
     // uid = user.uid
@@ -37,7 +37,7 @@ useEffect(()=>{
                     });
                 }
     
-                setCurrentUser({ displayName, email, uid, phtotURL });
+                setCurrentUser({ displayName, email, uid, photoURL });
             }
             else{
                 setCurrentUser(user);

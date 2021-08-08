@@ -2,6 +2,8 @@
 // import { firestore } from './firebase';
 import Login from "./Login";
 import Home from "./Home";
+import Profile from "./Profile";
+
 import  { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AuthProvider from "./AuthProvider";
 
@@ -24,7 +26,7 @@ function App() {
     
   //     }  ,[])
 
-console.log(user);
+// console.log(user);
 
 
   return (
@@ -39,14 +41,15 @@ console.log(user);
         <Route path="/home">
           <Home/>
         </Route>
+        
+        <Route path="/profile">
+          <Profile/>
+        </Route>
         <Route path="/">
           <Login/>
         </Route>
       </Switch>
       </AuthProvider>
-      
-
-
       </Router>
     </>
 
