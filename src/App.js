@@ -1,14 +1,13 @@
-import {createContext,useEffect, useState} from "react";
-import { firestore } from './firebase';
+// import {createContext,useEffect, useState} from "react";
+// import { firestore } from './firebase';
 import Login from "./Login";
 import Home from "./Home";
 import  { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import AuthProvider from "./AuthProvider";
 
-// context api has been used now
-let userContext = createContext();
+
 function App() {
 
-  let [user,setUser] = useState(null);
 
   // when the user logs in we need to change the user state 
   // useEffect( ()=>{
@@ -31,25 +30,30 @@ console.log(user);
   return (
     <>
     <Router>
-      <userContext.Provider value={user}>
+      
 
+      <AuthProvider>
+      
       <Switch>
        
         <Route path="/home">
           <Home/>
         </Route>
         <Route path="/">
-          <Login handleUser = {setUser}/>
+          <Login/>
         </Route>
       </Switch>
-      </userContext.Provider>
-    </Router>
+      </AuthProvider>
+      
+
+
+      </Router>
     </>
 
 
   );
 }
 
-export { userContext };
+
 
 export default App;

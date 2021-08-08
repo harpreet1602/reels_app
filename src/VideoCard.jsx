@@ -1,7 +1,7 @@
 import "./Home.css";
 import { useState } from "react";
 
-let VideoCard = () => {
+let VideoCard = (props) => {
 
     let [boxOpen, setBoxOpen] = useState(false);
     let [playing, setPlaying] = useState(false);

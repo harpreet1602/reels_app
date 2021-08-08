@@ -1,7 +1,7 @@
-import { useContext,useEffect } from "react";
+import { useContext } from "react";
 import { Redirect } from "react-router-dom";
-import {auth,signInWithGoogle,firestore} from "./firebase";
-import { userContext } from "./App"; 
+import {signInWithGoogle} from "./firebase";
+import { AuthContext } from "./AuthProvider"; 
 // If first of all login component is opened then login button appears because user is null initially
 //  then when the user logs in then through signInWithGoogle function i.e. provider function which help us to sign 
 // with google will be called we can login from any google account
@@ -15,48 +15,15 @@ import { userContext } from "./App";
 
 
 
-let Login = (props)=>{
-    let value = useContext(userContext);
+let Login = ()=>{
+    let value = useContext(AuthContext);
     console.log(value);
-useEffect(()=>{
 
-// this works when login and logout is done
-    auth.onAuthStateChanged( async (user)=>{
-        // if login-> user info
-        // if logout user = null
-
-        if(user){
-            let { displayName, email, uid} =user;
-// displayName = user.displayName
-// email = user.email
-// uid = user.uid
-// destructuring concept
-            // console.log(user);
-            let docRef = firestore.collection("users").doc(uid);
-            let document = await docRef.get();
-
-            if(!document.exists)
-            {
-                docRef.set({
-                    displayName,
-                    email,
-                    posts:[],
-                });
-            }
-
-            props.handleUser({ displayName, email, uid});
-        }
-        else{
-            props.handleUser(user);
-        }
-    })
-},[]);
     return(
         <div>
             {value?<Redirect to="/home"/> : ""}
 
-            <button onClick={signInWithGoogle}
-             type="button" 
+            <button onClick={signInWithGoogle} 
             className="btn btn-primary m-4">
                 Login with google</button>
         </div>
