@@ -7,6 +7,15 @@
     border-radius:50%;
     border: none;
 }
+#profile{
+    position:fixed;
+    bottom: 14rem;
+    right: 2rem;
+    border-radius: 50%;
+    height:4rem;
+    width: 4rem;
+}
+
 .upload-btn{
     position: fixed;
     bottom: 5rem;
@@ -85,9 +94,11 @@ video{
     height: 80%;
     width: 100%;
     border:1px solid black;
+    overflow-y:scroll;
+    overflow-x:;
 }
 
-.comment-from{
+.comment-form{
     height: 10%;
 }
 
@@ -97,9 +108,58 @@ video{
     border: none;
 }
 
-/comment-from button{
+.comment-form button{
     height: 100%;
     width: 20%;
     border: none;
     color: #1f68a0;
+}
+
+img{
+    display: block;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%; 
+}
+
+.all-comments > div{
+    display:flex;
+    padding: 8px;
+} 
+.all-comments > div > div{
+    margin-left: 20px;
+}
+
+.inner-comment{
+    top: 1.5rem;
+    left: 1rem;
+    position: absolute;
+}
+.comment-pic{
+    left: 32px;
+    top: -1.5rem;
+    position: absolute;
+    height: 2rem;
+    width: 2rem;
+}
+
+.comment-container{
+    height: 5rem;
+    width: 100%;
+    /* border: 2px solid black; */
+    color:black;
+    position: relative;
+    word-break: break-all;
+}
+.comment-text{
+    position:absolute;
+    left:3rem;
+    height: 4rem;
+    width: 24rem;
+    /* border: 1px solid black; */
+}
+.username-comment{
+    left: 1rem;
+    font-size: 1rem;
+    position: absolute;
 }

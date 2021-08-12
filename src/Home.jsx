@@ -18,7 +18,7 @@ let Home = ()=>{
             setPosts(
                 querySnapshot.docs.map((doc) =>{
                     console.log(doc.data());
-                    return doc.data();
+                    return {...doc.data(), id: doc.id};
                 })
             );
         })
@@ -71,7 +71,7 @@ let Home = ()=>{
                 let file = e.target.files[0];
                 console.log(name);
 //convert the file size into mb
-              
+            // prev size was in bytes  
                 size = size/1000000;
             
  //get file type

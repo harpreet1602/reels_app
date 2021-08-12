@@ -87,10 +87,10 @@ let VideoCard = (props) => {
                         {
                             allComments.map((comment,index) => {
                                 return(
-                                    <div key = {index}>
-                                    <img src = {comment.pic}/>
-                                    <div>
-                                    <p>
+                                    <div className="comment-container" key = {index}>
+                                    <img className="comment-pic" src = {comment.pic}/>
+                                    <div className="comment-text">
+                                    <p className="username-comment">
                                     <b>{comment.username}</b>
                                     </p>    
                                     <p className="inner-comment">{comment.comment}</p>
@@ -119,6 +119,7 @@ let VideoCard = (props) => {
                                 setCurrentUserComment("");
                                 // p has got the promise so after it gets resolved .then is fired
                                 p.then((docRef)=>{
+                                    console.log(props.post.id);
                                     return docRef.get();
                                 }).then((doc)=>{
                                     firestore
@@ -127,6 +128,7 @@ let VideoCard = (props) => {
                                     .update({
                                         comments: [...props.post.comments, doc.id],
                                     })
+
                                 })
                             }}
                             
